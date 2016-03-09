@@ -350,9 +350,6 @@ public:
 
   void clearOctomap();
 
-  // include a octomap monitor
-  boost::scoped_ptr<occupancy_map_monitor::OccupancyMapMonitor> octomap_monitor_;
-
 protected:
 
   /** @brief Initialize the planning scene monitor
@@ -443,6 +440,9 @@ protected:
 
   boost::scoped_ptr<message_filters::Subscriber<moveit_msgs::CollisionObject> > collision_object_subscriber_;
   boost::scoped_ptr<tf::MessageFilter<moveit_msgs::CollisionObject> > collision_object_filter_;
+
+  // include a octomap monitor
+  boost::scoped_ptr<occupancy_map_monitor::OccupancyMapMonitor> octomap_monitor_;
 
   // include a current state monitor
   CurrentStateMonitorPtr current_state_monitor_;

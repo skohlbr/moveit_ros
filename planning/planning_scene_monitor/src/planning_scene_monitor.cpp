@@ -184,6 +184,7 @@ void planning_scene_monitor::PlanningSceneMonitor::initialize(const planning_sce
 
         scene_->getCollisionRobotNonConst()->setPadding(default_robot_padd_);
         scene_->getCollisionRobotNonConst()->setScale(default_robot_scale_);
+        ROS_ERROR("Padding: %f, %f",  default_robot_padd_, default_robot_scale_);
         for(std::map<std::string, double>::iterator it=default_robot_link_padd_.begin(); it != default_robot_link_padd_.end(); ++it) {
             scene_->getCollisionRobotNonConst()->setLinkPadding(it->first, it->second);
         }
@@ -1282,6 +1283,10 @@ void planning_scene_monitor::PlanningSceneMonitor::configureDefaultPadding()
 
   // Ensure no leading slash creates a bad param server address
   static const std::string robot_description = (robot_description_[0] == '/') ? robot_description_.substr(1) : robot_description_;
+
+  ROS_ERROR("string: %s", (robot_description).c_str());
+
+  ROS_ERROR("string: %s", (robot_description + "_planning/default_robot_padding").c_str());
 
   nh_.param(robot_description + "_planning/default_robot_padding", default_robot_padd_, 0.0);
   nh_.param(robot_description + "_planning/default_robot_scale", default_robot_scale_, 1.0);
